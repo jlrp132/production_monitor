@@ -1,16 +1,13 @@
 # PCR2021
 
-from attr import has
-from numpy import dtype
+from altair.vegalite.v4.schema.channels import Key
 import streamlit as st
 import hashlib
 import calplot
 import pandas as pd
 import glob
-import matplotlib.pyplot as plt
 import plotly.express as px
-
-import time
+import os
 
 st.set_page_config(
     page_title='Prod Monitor',
@@ -53,8 +50,7 @@ def combine_tables(filelist):
     return df
 
 def fnum(filepath):
-    fnum = filepath.split('\\')[-1].split('_')[0]
-    return fnum
+    return int(os.path.basename(filepath).split('_')[0])
 
 # Auth form
 with st.sidebar.form(key='user_form'):
@@ -79,6 +75,7 @@ if u_name in _usps:
     if str(hashlib.sha256(u_pass.encode()).hexdigest()) == _usps[u_name]:
 
         filelist = glob.glob(r'./data/*.xlsx')
+        filelist.sort(key=fnum)
 
         df = combine_tables(filelist)
 
@@ -114,8 +111,9 @@ if u_name in _usps:
         st.subheader('Statistics')
         st.dataframe(df.describe())
 
-        st.write(filelist.sort(reverse=True, key=fnum))
-        st.write(fnum(filelist[0]))
+        # filelist.sort(key=fnum, reverse=True)
+        # st.write(filelist)
+        
 
     else:
         st.warning('Invalid Password')
