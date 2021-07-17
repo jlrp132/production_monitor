@@ -40,7 +40,7 @@ def combine_tables(filelist):
     for i in filelist:
         fname = i.split('\\')[-1]
         print(f'Loading {niter}/{len(filelist)}')
-        st.write('Loading: ', fname)
+        # st.write('Loading: ', fname)
         niter += 1
 
         df_temp = read_table(i)
