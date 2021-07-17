@@ -52,6 +52,10 @@ def combine_tables(filelist):
         barprog.progress(niter/len(filelist))
     return df
 
+def fnum(filepath):
+    fnum = filepath.split('\\')[-1].split('_')[0]
+    return fnum
+
 # Auth form
 with st.sidebar.form(key='user_form'):
     u_name = st.text_input('User', key='user')
@@ -110,7 +114,8 @@ if u_name in _usps:
         st.subheader('Statistics')
         st.dataframe(df.describe())
 
-        st.write(filelist)
+        st.write(filelist.sort(reverse=True, key=fnum))
+        st.write(fnum(filelist[0]))
 
     else:
         st.warning('Invalid Password')
