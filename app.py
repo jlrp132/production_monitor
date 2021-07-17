@@ -1,6 +1,7 @@
 # PCR2021
 
 from attr import has
+from numpy import dtype
 import streamlit as st
 import hashlib
 import calplot
@@ -78,7 +79,7 @@ if u_name in _usps:
         df = combine_tables(filelist)
 
         # Set Date index 
-        df['DATE'] = pd.date_range(start='2021-01-01', periods=len(df), freq='D')
+        df['DATE'] = pd.date_range(start='01/01/2021', periods=len(df), freq='D')
         df.set_index('DATE', inplace=True)
 
         # calculate totals
