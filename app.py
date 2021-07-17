@@ -41,9 +41,9 @@ def combine_tables(filelist):
     niter = 0
     
     for i in filelist:
-        # fname = i.split('\\')[-1]
+        fname = i.split('\\')[-1]
         print(f'Loading {niter}/{len(filelist)}')
-
+        st.write('Loading: ', fname)
         niter += 1
 
         df_temp = read_table(i)
