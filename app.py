@@ -103,7 +103,7 @@ if u_name in _usps:
 
         # show table
         st.header('Daily Production Table')
-        df.index = df.index.strftime('%d-%m-%Y')
+        df.index = df.index.strftime('%Y-%m-%d')
         st.dataframe(df.drop(['DAY'], axis=1))
 
         st.subheader('Statistics')
