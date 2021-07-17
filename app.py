@@ -73,7 +73,7 @@ if u_name in _usps:
 
     if str(hashlib.sha256(u_pass.encode()).hexdigest()) == _usps[u_name]:
 
-        filelist = glob.glob(r'.\data\*.xlsx')
+        filelist = glob.glob(r'./data/*.xlsx')
 
         df = combine_tables(filelist)
 
@@ -88,10 +88,10 @@ if u_name in _usps:
         # calplots
         st.header('Daily Calendar Plot')
         selection = ['MED','SOS','MSE','JDM','PIN','PAL','EDI']
-        # for f in selection:
-        #     figa, ax = calplot.calplot(df[f], cmap='jet', figsize=(15,3), yearlabels=False)
-        #     st.subheader(f)
-        #     st.pyplot(figa)        
+        for f in selection:
+            figa, ax = calplot.calplot(df[f], cmap='jet', figsize=(15,3), yearlabels=False)
+            st.subheader(f)
+            st.pyplot(figa)        
         
         # lineplot
         st.header('Daily Production Graph')
