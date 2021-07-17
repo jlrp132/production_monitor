@@ -110,6 +110,8 @@ if u_name in _usps:
         st.subheader('Statistics')
         st.dataframe(df.describe())
 
+        st.write(filelist)
+
     else:
         st.warning('Invalid Password')
 
